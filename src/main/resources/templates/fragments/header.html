@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/style.css">
+<style type="text/css">
+</style>
+</head>
+
+<body>
+	<div th:fragment="header">
+		<nav class="f-negro">
+
+				<div class="text-right" sec:authorize="isAuthenticated()">
+					<div class="text-right" >
+<!-- 						<a class="inline" href="/home"> -->
+<!-- 					<i class="fas fa-home"></i> -->
+<!-- 						</a> -->
+						<a class="inline" href="/subject" >Materias</a>
+						<a class="inline"  href="/enrollments" >Inscripciones</a>
+						<a 
+							class="inline" href="/student" th:if="${admin}">Estudiantes</a> <a
+							class="inline" href="/teacher" th:if="${admin}">Profesores</a> 
+							
+						<a class="inline" href="/registration" th:if="${admin}">Usuarios</a> 
+							<a
+							class="inline" href="/about">Acerca de</a> <a
+							class="inline" href="/logout">Logout</a>
+					</div>
+			</div>
+		</nav>
+	</div>
+
+</body>
+</html>

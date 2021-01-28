@@ -1,0 +1,133 @@
+.bg-gray {
+	background-color: #aaa;
+}
+card-body {
+	background-color: #aaa;
+}
+a >small{
+	  padding: 2px; 
+	text-decoration: none;
+  color: black;
+}
+
+a >small:hover{
+	  border-radius: 5px;
+	background-color: #555;
+	text-decoration: none;
+  color: white;
+}
+
+.colorred {
+    color:red;
+}
+.colorgreen {
+    color:green;
+}
+.f-gris {
+ background-color: #555;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+
+.f-negro{
+  background-color: #555;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.f-negro a{
+  padding: 10px;
+	text-decoration: none;
+  color: white;
+}
+
+
+
+
+.f-negro a:hover {
+  border-radius: 5px;
+  background-color: #aaa  !important;
+  text-decoration: none;
+    color: white;
+}
+
+.sel-div {
+	 text-decoration: none;
+}
+
+.sel-div >div >a >small:hover {
+	  border-radius: 5px;
+  background-color: #aaa  !important;
+}
+
+.test1 {
+	background-color: #eee;
+}
+.accordion {
+	background-color: #eee;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+}
+
+.active, .accordion:hover {
+	background-color: #ccc;
+}
+
+.importes {
+	padding-right: 50px;
+}
+
+.test {
+	color: withe;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.fondoSeleccionado {
+	background-color: "gray";
+}
+
+.panel {
+	padding: 0 18px;
+	display: none;
+	background-color: white;
+	overflow: hidden;
+}
+
+span {
+	background-color: "blue";
+	color: white;
+}
+
+.resaltar{
+		background-color: "blue";
+	color: white;
+}
+
+.bg-primary:hover {
+  background-color: red;
+}
+
+.resaltar >  a:hover{
+    background-color:#FCC;
+}
+
+a.ex1:hover, a.ex1:active {
+	color: red;
+}
+
+.btn1{
+  background-color: #3e8e41;
+  color: white;
+}
