@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Instituto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" href="../../css/style.css">
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<div class="container my-2">
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container my-5">
+			<div class="row">
+				<div class="col-6">
+					<h4>Estudiantes</h4>
+
+					<hr>
+
+					<!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+						data-target="#nuevaEntidadModal">Nuevo</button>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Estado</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr th:each="studentItem , stat : ${students}">
+								<input type="hidden" th:id="'id' + ${stat.index}" th:value="${studentItem.studentId}" />
+								<td th:id="'name' + ${stat.index} " th:text="${studentItem.name}"></td>
+								<td th:id="'lastName' + ${stat.index} " th:text="${studentItem.lastName}"></td>
+								<td th:if="${studentItem.active == 1}" th:text="${'Activo'}"></td>
+								<td th:if="${studentItem.active != 1}" th:text="${'Inactivo'}"></td>
+								<input type="hidden" th:id="'active' + ${stat.index}"
+									th:value="${studentItem.active}" />
+
+								<td>
+									<button type="button" class="btn btn-info btn-sm"
+										th:onclick="'edit(\'' + ${stat.index} +  '\');'">Editar</button>
+								</td>
+								<td><a th:href="@{/student/delete(id=${studentItem.studentId})}">borrar</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+
+					<!-- Modal -->
+					<div class="modal fade" id="nuevaEntidadModal" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Alta de estudiante</h4>
+								</div>
+								<div class="modal-body">
+
+
+									<form th:action="@{/student}" th:object="${studentForm}" method="post"
+										role="form">
+										<br> <input type="hidden" id="idStudent" th:field="*{studentId}">
+										<div class="form-group">
+											<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+												class="validation-message"></label> <input type="text"
+												maxlength="50"
+												 class="form-control"
+												id="name" th:field="*{name}" placeholder="Nombre" />
+										</div>
+										<div class="form-group">
+											<label th:if="${#fields.hasErrors('lastName')}" th:errors="*{latName}"
+												class="validation-message"></label> 
+												<input type="text" class="form-control"
+												maxlength="50"
+												id="lastName" th:field="*{lastName}" placeholder="Apellido" />
+										</div>
+
+
+										<div class="form-group">
+											<select id="active" th:field="*{active}" class="form-control">
+												<option th:value="1" th:text="Activo" />
+												<option th:value="2" th:text="Inactivo" />
+											</select>
+										</div>
+										<div class="form-group">
+											<select id="active" th:field="*{user}" class="form-control">
+												<option th:each="userItem : ${usersList}" th:value="${userItem.id}"
+													th:text="${userItem.dni}" />
+											</select>
+										</div>
+
+										<div class="form-group">
+											<button type="submit" class="btn btn-primary btn-block">Guardar</button>
+
+										</div>
+
+										<span th:text="${successMessage}"></span>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+<script>
+	function edit(index) {
+		document.getElementById("idStudent").value = document.getElementById("id"
+				+ index).value
+		document.getElementById("name").value = document.getElementById("name"
+				+ index).innerHTML
+		document.getElementById("lastName").value = document
+				.getElementById("lastName" + index).innerHTML
+		let pos = parseInt(document.getElementById("active" + index).value)
+		document.getElementById('active').getElementsByTagName('option')[pos - 1].selected = 'selected'
+		$("#nuevaEntidadModal").modal('show');
+
+	}
+</script>
+</html>
+
+
+<!-- <script -->
+<!-- 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script type="text/javascript"> -->
+
